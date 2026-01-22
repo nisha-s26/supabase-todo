@@ -59,7 +59,7 @@ const Todo = () => {
 
   const handleEdit = async () => {
     console.log(editId)
-    const { error } = await supabase.from("todos").update({ description: desc }).eq("id", editId)
+    const { error } = await supabase.from("todos").update({ title:title, description: desc }).eq("id", editId)
     if (error) {
       throw new Error("Error while updating")
     }
@@ -96,6 +96,8 @@ const Todo = () => {
           )
         })}
       </div>
+
+      <button onClick={() => supabase.auth.signOut()}>Log Out</button>
     </div>
   )
 }
